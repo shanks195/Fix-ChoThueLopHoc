@@ -1,0 +1,81 @@
+#Configure data source
+spring:
+  datasource:
+    druid:
+      
+      driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      url: jdbc:log4jdbc:mysql://127.0.0.1:3306/rentroom?serverTimezone=Asia/Seoul
+      username: tpschool
+      password: g43a54pi
+
+      # Initial configuration
+      initial-size: 3
+      # Minimum number of connections
+      min-idle: 3
+      # Maximum number of connections
+      max-active: 15
+      # Get connection timeout
+      max-wait: 5000
+      # Connection validity detection time
+      time-between-eviction-runs-millis: 90000
+      # Maximum idle time
+      min-evictable-idle-time-millis: 1800000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: select 1
+      # Configure filters for monitoring statistics interception
+      filters: stat
+
+      stat-view-servlet:
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: 123456
+
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+
+  #Configuration Jpa
+  jpa:
+    hibernate:
+      # The production environment is set to none to avoid automatically updating the database structure when the program is running
+      ddl-auto: none
+
+#jwt
+jwt:
+  header: Authorization
+  # Token prefix
+  token-start-with: Bearer
+  # The token must be encoded with a Base64 of at least 88 bits
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViOTg1ZGE0NTBjMGM4NDA5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  # Token expiration time here unit/millisecond, default 2 hours, can be generated on this website https://www.convertworld.com/en/time/milliseconds.html
+  token-validity-in-seconds: 7200000
+  # Online user key
+  online-key: online-token
+  # Verification code
+  code-key: code-key
+
+#Whether to allow code generation, the production environment is set to false
+generator:
+   enabled: false
+
+#If you want to open swagger in the production environment, you need to configure the request address
+#springfox:
+# documentation:
+# swagger:
+# v2:
+# host: # Interface domain name or external network ip
+
+#Whether to open swagger-ui
+swagger:
+   enabled: false
+
+# File storage path
+file:
+   path: /home/thuephonghoc/file/
+   avatar: /home/thuephonghoc/avatar/
+   # File size /M
+   maxSize: 100
+   avatarMaxSize: 5
