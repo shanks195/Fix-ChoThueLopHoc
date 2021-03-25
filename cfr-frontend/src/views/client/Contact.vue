@@ -1,7 +1,7 @@
 <template>
   <div id="contact" class="paragraph-left">
     <div class="contact" v-for="cont in content" :key="cont">
-      <h1>{{ cont.title }}</h1>
+      <p v-html="cont.title">{{ cont.title }}</p>
       <p slot="description" v-html="cont.description">{{ cont.description }}</p>
     </div>
     
