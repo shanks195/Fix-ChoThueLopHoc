@@ -146,7 +146,7 @@ export default {
           }
           this.$store.dispatch('Login', user).then(() => {
             this.loading = false
-            this.$router.push({ path: this.redirect || '/admin' })
+            this.$router.push({ path: this.redirect || '/admin/cfr/thuephonghoc' })
           }).catch(() => {
             this.loading = false
             this.getCode()
