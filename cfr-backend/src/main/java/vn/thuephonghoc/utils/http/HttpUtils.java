@@ -75,7 +75,7 @@ public class HttpUtils {
         BufferedReader in = null;
         StringBuilder result = new StringBuilder();
         try {
-            String urlNameString = url + "?" + param;
+            String urlNameString = String.format(url, param);
             log.info("sendPost - {}" , urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection conn = realUrl.openConnection();

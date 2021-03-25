@@ -23,17 +23,18 @@ public class AddressUtils {
         if (IpUtils.internalIp(ip)) {
             return "Intranet IP";
         }
-        String rspStr = HttpUtils.sendPost(IP_URL, "ip=" + ip);
+        String rspStr = HttpUtils.sendPost(IP_URL, ip);
         if (StringUtils.isEmpty(rspStr)) {
             log.error("Get location exception {}", ip);
             return address;
         }
         JSONObject obj = JSONObject.parseObject(rspStr);
-        JSONObject data = obj.getObject("data" , JSONObject.class);
+        JSONObject data = obj;//.getObject("data" , JSONObject.class);
         String region = data.getString("region");
         String city = data.getString("city");
-        String isp = data.getString("isp");
+        String isp = data.getString("addr");// <-- havo no "isp"
         address = region + " " + city + " " + isp;
+        log.info("Get location {}", address);
         return address;
     }
 
