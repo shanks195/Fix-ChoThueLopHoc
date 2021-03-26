@@ -74,8 +74,8 @@ swagger:
 
 # File storage path
 file:
-   path: /home/thuephonghoc/file/
-   avatar: /home/thuephonghoc/avatar/
+   path: /var/www/rent.theplayer.school/file
+   avatar: /var/www/rent.theplayer.school/avatar
    # File size /M
    maxSize: 100
    avatarMaxSize: 5
